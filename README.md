@@ -29,3 +29,6 @@ I assumed that all the docs would have the same fields since we were using a SQL
 8. to stop app Ctrl + c/^c in terminal
 
 
+## See Live Site
+
+[here](https://condescending-davinci-4c1297.netlify.com/)
