@@ -4,14 +4,12 @@ const path = require("path");
 const xmlparser = require("express-xml-bodyparser");
 const { errorHandler } = require("./server.helpers");
 const {
-  createHostsTable,
-  createPortsTable,
-  hostsQueryBuilder,
-  createTasksTable,
-  portsQueryBuilder,
-  tasksQueryBuilder,
-  getAllDocs,
-  getAllDocsByIp
+  createAlbumsTable,
+  createAwardsTable,
+  albumsQueryBuilder,
+  awardsQueryBuilder,
+  getAllAlbums,
+  getAllDocsByName
 } = require("./sql");
 
 const db = new sqlite3.Database(":memory:");
@@ -28,18 +26,18 @@ app.get("/", (req, res) => {
   res.sendFile(index);
 });
 
-app.get("/files", (req, res) => {
+app.get("/albums", (req, res) => {
   db.serialize(function() {
-    db.all(`${getAllDocs}`, function(err, rows) {
+    db.all(`${getAllAlbums}`, function(err, rows) {
       if (err) console.error(err);
       res.json(rows);
     });
   });
 });
 
-app.get("/files/:ip", (req, res) => {
+app.get("/albums/:ip", (req, res) => {
   const ip = req.params.ip;
-  const query = getAllDocsByIp(ip);
+  const query = getAllAlbumsByName(ip);
   db.serialize(function() {
     db.all(`${query}`, function(err, rows) {
       if (err) console.error(err);
@@ -49,27 +47,19 @@ app.get("/files/:ip", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  const name = req.params.name;
-  const nmaprun = req.body.nmaprun;
-  const host = nmaprun.host;
-  const scaninfo = nmaprun.scaninfo[0].$;
-  const runstats = nmaprun.runstats[0].finished[0].$;
-
+  const albums = req.body.albums.album;
   try {
     db.serialize(function() {
-      host.forEach(h_ => {
-        const query = hostsQueryBuilder(h_, nmaprun, scaninfo, runstats, name);
+      albums.forEach(album => {
+        const { awards } = album;
+        const query = albumsQueryBuilder(album);
 
-        db.run(`${query}`, errorHandler);
+        db.run(`${query}`, err => errorHandler({ err, res }));
+        db.
 
-        h_.ports[0].port.forEach(p => {
-          const query = portsQueryBuilder(p, h_);
-          db.run(`${query}`, errorHandler);
-        });
-
-        nmaprun.taskbegin.forEach((t, i) => {
-          const query = tasksQueryBuilder(t, i, nmaprun);
-          db.run(`${query}`, errorHandler);
+        awards.forEach(award => {
+          const query = awardsQueryBuilder(award);
+          db.run(`${query}`, err => errorHandler({ err, res }));
         });
       });
     });
@@ -81,9 +71,8 @@ app.post("/", (req, res) => {
 
 app.listen(port, () => {
   db.serialize(() => {
-    db.run(`${createHostsTable}`);
-    db.run(`${createPortsTable}`);
-    db.run(`${createTasksTable}`);
+    db.run(`${createAlbumsTable}`);
+    db.run(`${createAwardsTable}`);
     console.log("May the force be with you!");
   });
 });

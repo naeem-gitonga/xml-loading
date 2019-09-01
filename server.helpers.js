@@ -15,6 +15,7 @@ exports.writeFile = (req, res) => {
   });
 };
 
-exports.errorHandler = err => {
-  if (err) return console.log(err.message);
+exports.errorHandler = ({ err, res }) => {
+  console.log(err.message);
+  res.send(err);
 };
