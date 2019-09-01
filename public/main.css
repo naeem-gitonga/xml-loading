@@ -1,0 +1,70 @@
+html {
+  height: 100vh;
+}
+
+body {
+  height: 100v;
+  width: 100vw;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  padding: 0.5rem 15px;
+  border-top: #ebf2f6 1px solid;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+  line-height: 1.75em;
+  text-align: center;
+  width: 100%;
+}
+
+footer > a {
+  text-decoration: none;
+  color: #bbc7cc;
+}
+
+#root {
+  margin-top: 100px;
+}
+
+#find {
+  margin-left: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+h1.navbar-brand {
+  font-size: 4.25rem;
+  float: left;
+  margin-left: 20px;
+}
+
+.bn1 {
+  color: black;
+}
+
+.btn:focus {
+  outline: none !important;
+}
+
+.welcome-nav {
+  background-color: #f6f6f8;
+}
+
+table.table {
+  max-width: 70%;
+  margin: auto;
+}
+
+div.table-div {
+  margin-bottom: 50px;
+}
+
+@media (max-width: 425px) {
+  h1.navbar-brand {
+    font-size: 15.2vw;
+  }
+}

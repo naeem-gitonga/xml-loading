@@ -1,0 +1,18 @@
+<albums>
+  <album>
+    <artist>Prince</artist>
+    <title>Purple Rain</title>
+    <year>1984</year>
+    <awards>
+      <grammy>3</grammy>
+    </awards>
+  </album>
+  <album>
+    <artist>Rick James</artist>
+    <title>Street Songs</title>
+    <year>1981</year>
+    <awards>
+      <grammy>1</grammy>
+    </awards>
+  </album>
+</albums>
