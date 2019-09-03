@@ -6,8 +6,6 @@ Some javascript, and xml handling
 I chose the technologies that I used because they were quick and "easy".
 I assumed that all the docs would have the same fields since we were using a SQL db
 
-
-
 ### Technologies
 
 1. JavaScript

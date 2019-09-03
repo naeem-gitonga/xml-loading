@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>albums</title>
+  <title>Albums</title>
   <meta name="description" content="submit and view nmap xml" />
 
   <link rel="icon" href="./favicon.ico" />
@@ -12,14 +12,17 @@
 </head>
 
 <body>
-  <nav class="welcome-nav navbar ">
+  <nav class="welcome-nav navbar">
     <h1 class="navbar-brand">load and view albums</h1>
-    <form class="form-inline" onsubmit="return false">
-      <input id="xml-upload" class="form-control mr-sm-2" id="search" type="file" accept=".xml" placeholder="Upload XML file" aria-label="upload" />
-      <button class="btn btn-outline-success my-2 bn1 upload" type="submit">
-        Upload
-      </button>
-    </form>
+    <input id="xml-upload"
+            class="form-control mr-sm-2"
+            type="file"
+            accept=".xml"
+            placeholder="Upload XML file"
+            aria-label="upload" />
+      <button class="btn btn-outline-success my-2 bn1 upload" type="button">Upload</button>
+      <button class="get-all btn btn-outline-success my-2 bn1" 
+              type="button">Get All Albums</button>
   </nav>
 
   <div id="root">
@@ -29,7 +32,6 @@
         <input class="submit-query" type="submit" text="Submit" />
       </form>
     </div>
-    <button class="get-all hidden">Get All</button>
     <div class="table-div"></div>
   </div>
 
@@ -38,7 +40,9 @@
       <a href="https://www.jahanaeemgitonga.com">Jaha Naeem Gitonga </a><span class="date"></span>
     </footer>
   </div>
-  <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous">
   </script>
   </script>
   <script src="./app.js"></script>

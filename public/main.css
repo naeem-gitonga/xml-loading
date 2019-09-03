@@ -28,6 +28,10 @@ footer > a {
   margin-top: 100px;
 }
 
+#xml-upload {
+  max-width: 500px;
+}
+
 #find {
   margin-left: 20px;
 }
@@ -67,4 +71,8 @@ div.table-div {
   h1.navbar-brand {
     font-size: 15.2vw;
   }
+}
+
+.get-all {
+  margin-left: 50px;
 }

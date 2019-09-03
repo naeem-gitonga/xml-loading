@@ -1,17 +1,26 @@
 $(function() {
-  $(".date").text(new Date().getFullYear());
+  $('.date').text(new Date().getFullYear());
 
-  $(".upload").on("click", function(e) {
+  $('.upload').click( function(e) {
     e.preventDefault();
-    processFile();
+    processFile($);
+    return false;
   });
 
-  $("#find-by-name").on("submit", function(e) {
+  $('.get-all').click( function(e) {
     e.preventDefault();
-    $.get(`/files/${$(".input-name").val()}`).done(res => buildTable(res));
+    $.get('/albums').done(res => buildTable(res))
+    return false;
+  })
+
+  $('#find-by-name').on('submit', function(e) {
+    e.preventDefault();
+    $.get(`/albums/${$('.input-name').val()}`).done(res => buildTable(res));
+    return false;
   });
 
   function buildTable(res) {
+    if (!res.length) return;
     //! we're supposing that all dox have will have the same tags and attributes
     const keys = Object.keys(res[0]);
     const headers = keys.map(h => `<th>${h}</th>`);
@@ -31,7 +40,7 @@ $(function() {
   }
 });
 
-function sendXML(xml, name) {
+function sendXML(xml, name, jquery) {
   const xhttp = new XMLHttpRequest();
   xhttp.open("POST", "/");
   xhttp.onreadystatechange = () => {
@@ -42,10 +51,12 @@ function sendXML(xml, name) {
   };
   xhttp.setRequestHeader("Content-Type", "text/xml");
   xhttp.send(xml);
+  jquery('#xml-upload').val('');
 }
 
-function processFile() {
+function processFile(jquery) {
   const file = document.getElementById("xml-upload").files;
+  if (!file.length) return;
   const name = file[0].name;
   const reader = new FileReader();
   let xml;
@@ -54,6 +65,6 @@ function processFile() {
     xml = e.target.result;
     const beginXML = xml.search("<albums");
     xml = xml.substring(beginXML, xml.length);
-    sendXML(xml, name);
+    sendXML(xml, name, jquery);
   };
 }
