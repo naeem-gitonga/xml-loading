@@ -14,7 +14,7 @@
   "dependencies": {
     "blob": "0.0.5",
     "body-parser": "^1.19.0",
-    "body-parser-xml": "^1.1.0",
+    "body-parser-xml": "^2.0.3",
     "express": "^4.17.3",
     "express-xml-bodyparser": "^0.3.0",
     "formidable": "^1.2.1",
